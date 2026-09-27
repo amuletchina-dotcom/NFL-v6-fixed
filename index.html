@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0f172a">
+<title>ASTM E1300 NFL V6</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="wrap">
+  <section class="card hero">
+    <div class="brand">CS ECO GLASS</div>
+    <h1>ASTM E1300 NFL V6</h1>
+    <p>Calibrated NFL quick-check + ASTM chart viewer with highlighted point, AR line and NFL contour.</p>
+  </section>
+
+  <section class="card">
+    <h2>Panel</h2>
+    <div class="grid3">
+      <label>Assembly
+        <select id="assembly">
+          <option value="igu">Double glazing IGU</option>
+          <option value="single">Single lite / Inner only</option>
+        </select>
+      </label>
+      <label>Width (mm)<input id="width" type="number" value="2000" min="1"></label>
+      <label>Height (mm)<input id="height" type="number" value="2800" min="1"></label>
+      <label>Support
+        <select id="support">
+          <option value="4">4 sides continuously supported</option>
+          <option value="3">3 sides continuously supported</option>
+          <option value="2">2 opposite sides supported</option>
+          <option value="1">1 side / cantilever</option>
+        </select>
+      </label>
+      <label id="edgeBox" class="hidden">2-side supported edges
+        <select id="supportedEdges">
+          <option value="lr">Left / Right supported</option>
+          <option value="tb">Top / Bottom supported</option>
+        </select>
+      </label>
+    </div>
+  </section>
+
+  <section class="lites">
+    <div id="outerCard" class="card">
+      <h2>Outer Lite</h2>
+      <div id="outerFields"></div>
+    </div>
+    <div class="card">
+      <h2>Inner Lite</h2>
+      <div id="innerFields"></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="actions">
+      <button id="example1" class="secondary">ASTM A3.1: 6 mm / 1200×1500</button>
+      <button id="example2" class="secondary">Report: 6 mm / 2000×2800</button>
+      <button id="calc" class="primary">Calculate NFL</button>
+    </div>
+  </section>
+
+  <section id="results" class="card hidden">
+    <h2>NFL Results</h2>
+    <div id="resultCards" class="resultCards"></div>
+  </section>
+
+  <section id="viewer" class="card hidden">
+    <div class="viewerHead">
+      <div>
+        <h2>ASTM NFL Chart</h2>
+        <div id="chartSubtitle" class="muted"></div>
+      </div>
+      <div class="toggle">
+        <button id="showOuter" class="secondary">Outer</button>
+        <button id="showInner" class="secondary">Inner</button>
+      </div>
+    </div>
+
+    <div class="chartWrap">
+      <img id="chartImg" alt="ASTM E1300 NFL chart">
+      <canvas id="overlay"></canvas>
+    </div>
+
+    <div class="legend">
+      <span><i class="dot point"></i> Panel size point</span>
+      <span><i class="dot ar"></i> Aspect-ratio line</span>
+      <span><i class="dot contour"></i> Highlighted NFL contour</span>
+    </div>
+
+    <div id="chartNote" class="notice"></div>
+  </section>
+
+  <section class="card small">
+    V6 auto-calibration is enabled for four-side support. The 6 mm monolithic surface is calibrated exactly to three known source points:
+    ASTM A3.1 (1200×1500 → 2.50 kPa), ASTM A3.3 (1520×1900 → 1.80 kPa), and the supplied report (2000×2800 → 1.00 kPa).
+    Laminated 8 mm is additionally calibrated to ASTM A3.3 (1520×1900 → 2.50 kPa). Other thicknesses are interpolated from ASTM Table 4 minimum thicknesses and their correct Annex A1 chart family.
+  </section>
+</main>
+
+<script src="astm-data.js"></script>
+<script src="nfl-engine.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
